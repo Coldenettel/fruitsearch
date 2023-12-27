@@ -1,0 +1,33 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+  
+    const items = ['Apple', 'Banana', 'Cherry', 'Grapes', 'Orange', 'Peach'];
+  
+    searchInput.addEventListener('input', function () {
+      const userInput = searchInput.value.toLowerCase();
+      const filteredItems = items.filter(item => item.toLowerCase().includes(userInput));
+  
+      displayResults(filteredItems);
+    });
+  
+    function displayResults(results) {
+      searchResults.innerHTML = '';
+  
+      results.forEach(result => {
+        const listItem = document.createElement('li');
+        listItem.textContent = result;
+        searchResults.appendChild(listItem);
+  
+        listItem.addEventListener('click', function () {
+          useSuggestion(result);
+        });
+      });
+    }
+  
+    function useSuggestion(suggestion) {
+      searchInput.value = suggestion;
+      searchResults.innerHTML = '';
+    }
+  });
+  
